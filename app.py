@@ -6,7 +6,6 @@ import dateparser
 from csv import reader
 from pymongo import MongoClient
 import pprint
-from werkzeug import secure_filename
 import os
 import xlrd
 from pprint import pprint
@@ -620,7 +619,7 @@ def upload_file():
 
 	
 	for f in request.files.getlist('fileInput'):
-		fName = secure_filename(f.filename)
+		fName = (f.filename)
 		if fName =='':
 			return redirect(url_for('dailyReports'))
 
@@ -804,7 +803,7 @@ def product_upload_file():
 		return redirect(url_for('products'))
 
 	f = request.files['fileInput']
-	fName = secure_filename(f.filename)
+	fName = (f.filename)
 	
 	f.save(fName)
 	f= open(fName,'r',encoding="GBK")
